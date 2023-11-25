@@ -6,7 +6,7 @@
 int main(void){
     Conta cliente;
 
-    cliente = buscaPorID(1);
+    cliente = retornoUsers("SELECT * FROM users WHERE id='1'");
     printf("Nome: %d\n", cliente.id);
     printf("Nome: %s\n", cliente.nome);
     printf("Nome: %d\n", cliente.tipoDeConta);
