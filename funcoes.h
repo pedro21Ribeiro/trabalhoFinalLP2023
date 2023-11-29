@@ -11,12 +11,7 @@ typedef struct{
     double saldo;
 } Conta;
 
-<<<<<<< HEAD
-typedef struct
-{
-=======
 typedef struct{
->>>>>>> 7585c33aadc8a00e6ebc66992f3f486a0f6478e3
     int id;
     int sender;
     int reciver;
@@ -24,10 +19,6 @@ typedef struct{
     char data[11];
 } Movimento;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 7585c33aadc8a00e6ebc66992f3f486a0f6478e3
 typedef Conta *p_contas;
 
 extern p_contas usuarios[MAX];
