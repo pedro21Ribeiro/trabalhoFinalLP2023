@@ -57,7 +57,7 @@ Conta retornoUsers(char query[600]){
 }
 
 Movimento retornoMovimento(char query[600]){
-    //Declarasção das varravéis SQL em ordem, Conexão, Resultado e Fileira
+    //Declaração das variavéis SQL em ordem, Conexão, Resultado e Fileira
     MYSQL *conn;
 	MYSQL_RES *res;
 	MYSQL_ROW row;
@@ -128,7 +128,7 @@ void adicionarUser(char nome[51], int tipoDeConta, double saldo){
 }
 
 void adicionarMovimento(int sender, int reciver, double valor, char data[11]){
-    //Declarasção das varravéis SQL em ordem, Conexão, Resultado e Fileira
+    //Declaração das varavéis SQL em ordem, Conexão, Resultado e Fileira
     MYSQL *conn;
 	
     //constantes para a conexão a DataBase
@@ -154,7 +154,7 @@ void adicionarMovimento(int sender, int reciver, double valor, char data[11]){
 }
 
 void usersSemRetorno(char query[600]){
-    //Declarasção das varravéis SQL em ordem, Conexão, Resultado e Fileira
+    //Declaração das varavéis SQL em ordem, Conexão, Resultado e Fileira
     MYSQL *conn;
 	
     //constantes para a conexão a DataBase
