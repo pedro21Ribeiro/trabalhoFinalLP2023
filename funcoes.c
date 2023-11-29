@@ -8,59 +8,10 @@ p_contas usuarios[MAX];
 
 
 char *server = "localhost";//Servidor
-char *user = "sistema"; //Usuário (recomendo criar outro sem ser o root)
-char *password = "senhaForte1234"; //Senha do usuário
+char *user = "root"; //Usuário (recomendo criar outro sem ser o root)
+char *password = "2023"; //Senha do usuário
 char *database = "banco"; //O database a ser acessado
 
-
-int popularVetor(char *arquivo){
-    FILE *fp = NULL;
-    fp = fopen(arquivo, "rb");
-    if(fp == NULL){
-        return 1;
-    }
-    
-
-    for(int i = 0; i<MAX; i++){
-        usuarios[i] = (p_contas)malloc(sizeof(Conta));
-        fread(usuarios[i], sizeof(Conta), 1, fp);
-    }
-
-    fclose(fp);
-    return 0;
-}
-
-int adicionarUsuarios(char *arquivo, char nome[tamNome], int tipoDeConta, double saldo){
-    int i = 0;
-    popularVetor(arquivo);
-    FILE *fp = NULL;
-    fp = fopen(arquivo, "wb");
-    fwrite("abc", sizeof("abc"), 1, fp);
-    fclose(fp);
-    
-    fp = fopen(arquivo, "wb");
-
-    if(fp == NULL){
-        return 1;
-    }
-    //Esse for está vazio pois o objetivo dele é chegar no ultimo usuário adicionado
-    /*for(i=0;i<MAX;i++){
-        if(usuarios[i]->id!= i+1){
-            break;
-        }
-    }*/
-    usuarios[i] = (p_contas)(malloc(sizeof(Conta)));
-    usuarios[i] -> id = 1;
-    /*for(int j =0; j < tamNome; j++){
-        usuarios[i] -> nome[j] = nome[j];
-    }*/
-    usuarios[i] -> tipoDeConta = 1;
-    usuarios[i] -> saldo = 100;
-    
-    fwrite(&usuarios, sizeof(usuarios), 1, fp);
-    fclose(fp);
-    return 0;
-}
 
 Conta retornoUsers(char query[600]){
     //Declarasção das varravéis SQL em ordem, Conexão, Resultado e Fileira
@@ -122,7 +73,6 @@ Movimento retornoMovimento(char query[600]){
 		exit(1);
 	}
 	
-    Movimento movimento = {0, 0, 0, 0, ""};    
     Movimento movimento= {0, 0, 0, 0, ""};    
 
 	    //Envio de querrys SQL, é o que está Aspas
@@ -222,4 +172,16 @@ void usersSemRetorno(char query[600]){
 		fprintf(stderr, "%s\n", mysql_error(conn));
 		exit(1);
 	}
+}
+
+Conta buscar_por_nome(char nome[51]){
+    char query[600]; //
+    sprintf(query, "SELECT * FROM users WHERE nome = '%s'; ",nome);
+    return retornoUsers (query);
+
+}
+Conta buscar_por_id(int id){
+    char query[600];
+    sprintf(query, "SELECT * FROM users WHERE id = '%d'; ", id);
+    return retornoUsers(query);
 }
