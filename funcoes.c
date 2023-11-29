@@ -74,7 +74,11 @@ Conta retornoUsers(char query[600]){
 	conn = mysql_init(NULL); //Iniciando a estrutura SQL com o MySql
 	
         //conectando-se a DB
+<<<<<<< HEAD
 	if (!mysql_real_connect(conn, server, user, password, database, 0, "mysql", 0)) {
+=======
+	if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) {
+>>>>>>> 7585c33aadc8a00e6ebc66992f3f486a0f6478e3
 		fprintf(stderr, "%s\n", mysql_error(conn));
 		exit(1);
 	}
@@ -122,7 +126,11 @@ Movimento retornoMovimento(char query[600]){
 		exit(1);
 	}
 	
+<<<<<<< HEAD
     Movimento movimento = {0, 0, 0, 0, ""};    
+=======
+    Movimento movimento= {0, 0, 0, 0, ""};    
+>>>>>>> 7585c33aadc8a00e6ebc66992f3f486a0f6478e3
 
 	    //Envio de querrys SQL, é o que está Aspas
     

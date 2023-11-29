@@ -4,21 +4,12 @@
 
 
 int main(void){
-    char nome[tamNome];
-    int tipoDeConta;
-    double saldo;
-   /* 
-    printf("Nome: ");
-    scanf("%s", nome);
-    printf("Tipo de conta: ");
-    scanf("%d", &tipoDeConta);
-    printf("saldo:  ");
-    scanf("%lf", &saldo);*/
-    adicionarUsuarios("./users.bin", nome, tipoDeConta, saldo);
-    
-    popularVetor("./users.bin");
-    printf("id: %d\n", usuarios[0] -> id);
-    printf("nome: %s\n", usuarios[0] -> nome);
-    printf("tipo de conta: %d\n", usuarios[0] -> tipoDeConta);
-    printf("saldo: %lf\n", usuarios[0] -> saldo);
+    Conta cliente;
+
+    cliente = retornoUsers("SELECT * FROM users WHERE id='1'");
+    printf("Nome: %d\n", cliente.id);
+    printf("Nome: %s\n", cliente.nome);
+    printf("Nome: %d\n", cliente.tipoDeConta);
+    printf("Nome: %0.2lf\n", cliente.saldo);
+
 }
