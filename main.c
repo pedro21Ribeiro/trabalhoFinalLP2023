@@ -11,7 +11,7 @@ int main(void){
     
 while (i != 0)
 {
-    printf("\n\t\tBANCO COMMIT\n\n");
+    printf("\n\t\tBANCO COMMITY\n\n");
     printf("1 - Pesquisar por nome\n");
     printf("2 - SAIR\n");
     scanf("%d", &opcao);
