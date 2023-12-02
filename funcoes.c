@@ -8,11 +8,11 @@
 
 char *server = "localhost";//Servidor
 char *user = "root"; //Usuário (recomendo criar outro sem ser o root)
-char *password = "2023"; //Senha do usuário
+char *password = "1598753"; //Senha do usuário
 char *database = "banco"; //O database a ser acessado
 
 void deletarUsuario(int id){
-    Conta check;
+    Conta check = {0, "", 0, 0.0, 0};
     check = buscar_por_id(id);
 
     if (check.id == 0){
@@ -29,7 +29,13 @@ void deletarUsuario(int id){
 
 void alterar_users(int id, int dado, char *novoDado){ //id do usuário de será alterado, dado > qual dado será alterado, novoDado > dados alterados
     char query [600];
+    char queryVerificacao[600];
     char valor [75];
+    char cpfFormatado[15];
+
+
+
+    Conta check = {0, "", 0, 0.0, 0};
     switch (dado)
     {
     case 1:
@@ -37,6 +43,17 @@ void alterar_users(int id, int dado, char *novoDado){ //id do usuário de será 
         break;
     case 2:
         strcpy(valor,"cpf");
+        fomratarCpfString(novoDado, cpfFormatado);
+        sprintf(queryVerificacao, "SELECT * FROM users WHERE cpf = '%s';", cpfFormatado);
+        check = retornoUsers(queryVerificacao);
+        if(check.id != 0){
+            printf("CPF já cadastrado cancelando operação\n");
+            return;
+        }
+        sprintf(query, "UPDATE users SET cpf = '%s' WHERE id = '%d' LIMIT 1;", cpfFormatado, id);
+        usersSemRetorno(query);
+        printf("Dados alterado com sucesso\n");
+        return;
         break;
     case 3:
         strcpy(valor,"tipo"); //tipo de conta
@@ -49,10 +66,11 @@ void alterar_users(int id, int dado, char *novoDado){ //id do usuário de será 
     }
     sprintf(query, "UPDATE users SET %s = '%s' WHERE id = '%d' LIMIT 1;", valor, novoDado, id);
     usersSemRetorno(query);
+    printf("Dados alterado com sucesso\n");
 }
 
 void deposito(double valor, int id){
-    Conta check; 
+    Conta check = {0, "", 0, 0, 0}; 
     double saldoNovo;
     char *value;
     check = buscar_por_id(id);
@@ -69,6 +87,7 @@ void deposito(double valor, int id){
     saldoNovo = check.saldo + valor;
     sprintf(value, "%f", saldoNovo);
     alterar_users(id, 4, value);
+    transferir_dinheiro(0, id, valor);
 }
 
 
@@ -169,7 +188,7 @@ void add_user_terminal(){
     long long int numCpf;
     char cpf[15];
     char queryVerificacao[600];
-    Conta verificar;
+    Conta verificar = {0, "", 0, 0, 0};
 
     int opt;
     char temp;
@@ -177,13 +196,13 @@ void add_user_terminal(){
 
     //Recebimento e declaração de variaveis
     scanf("%c", &temp);
-    printf("Digite o nome do cliente a ser adicinado:  ");
+    printf("Digite o nome do cliente a ser adicinado (Max. 50 caracteres):  ");
     scanf("%[^\n]", nome);
-    printf("Digite o seu cpf (somente os numeros):   ");
+    printf("Digite o seu cpf (somente os numeros do cpf):   ");
     scanf("%lld", &numCpf);
-    printf("Digite o tipo da conta:   ");
+    printf("Digite o tipo da conta (numérico):   ");
     scanf("%d", &tipoDeConta);
-    printf("Digite o seu deposito inicial ou 0 se preferiri não investir:   ");
+    printf("Digite o seu deposito inicial ou 0 se preferir não investir:   ");
     scanf("%lf", &saldo);
     scanf("%c", &temp);
 
@@ -262,7 +281,6 @@ Conta retornoUsers(char query[600]){
         cliente.tipoDeConta = atoi(row[2]);
         cliente.saldo = atof(row[3]);
         cliente.cpf = atoi(row[4]);
-        cliente.numeroDaConta = atoi(row[5]);
     }
 
     //limpa os resultados
@@ -385,7 +403,7 @@ void usersSemRetorno(char query[600]){
 	
 	conn = mysql_init(NULL); //Iniciando a estrutura SQL com o MySql
 	
-        //conectando-se a DB
+        //conectando-strtoll(value, &eptr, 10)se a DB
 	if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) {
 		fprintf(stderr, "%s\n", mysql_error(conn));
 		exit(1);
@@ -414,7 +432,7 @@ Conta buscar_por_cpf(){
     char cpf[15];
     char query[600];
 
-    printf("Digite o CPF a ser buscado (somente numeros):    ");
+    printf("Digite o CPF a ser buscado (somente os numeros do cpf):    ");
     scanf("%lld", &numCpf);
     formatarCpf(numCpf, cpf);
     sprintf(query,"SELECT * FROM users WHERE cpf = '%s'; ", cpf);
@@ -438,4 +456,54 @@ void formatarCpf(long long int numCpf, char *cpf) {
              numberString[3], numberString[4], numberString[5],
              numberString[6], numberString[7], numberString[8],
              numberString[9], numberString[10]);
+}
+
+void fomratarCpfString(char *antigo, char *novo){
+
+    snprintf(novo, 15, "%c%c%c.%c%c%c.%c%c%c-%c%c",
+    antigo[0], antigo[1], antigo[2],
+    antigo[3], antigo[4], antigo[5],
+    antigo[6], antigo[7], antigo[8],
+    antigo[9], antigo[10]);
+}
+void todosUsuários(){
+    //Declarasção das varravéis SQL em ordem, Conexão, Resultado e Fileira
+    MYSQL *conn;
+	MYSQL_RES *res;
+	MYSQL_ROW row;
+	
+    //constantes para a conexão a DataBase
+
+	
+	conn = mysql_init(NULL); //Iniciando a estrutura SQL com o MySql
+	
+        //conectando-se a DB
+	if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) {
+		fprintf(stderr, "%s\n", mysql_error(conn));
+		exit(1);
+	}
+	    //Envio de querrys SQL, é o que está Aspas
+	if (mysql_query(conn, "SELECT * FROM users;")) {
+		fprintf(stderr, "%s\n", mysql_error(conn));
+		exit(1);
+	}
+
+    res = mysql_store_result(conn);//Guardando o resultado da querry
+
+            //passa valor por valor para cada fileira retornada
+    printf("---------------------------------------------------------------------------");
+	while ((row = mysql_fetch_row(res)) != NULL){
+        printf("\n");
+        printf("ID: %s\n", row[0]);
+        printf("NOME: %s\n", row[1]);
+        printf("TIPO DE CONTA:  %s\n", row[2]);
+        printf("SALDO:  %s\n", row[3]);
+        printf("CPF:  %s\n", row[4]);
+        printf("\n");
+    }
+
+    //limpa os resultados
+	mysql_free_result(res);
+    //termina a conexão
+	mysql_close(conn);
 }

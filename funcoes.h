@@ -9,7 +9,6 @@ typedef struct{
     int tipoDeConta;
     double saldo;
     int cpf;
-    int numeroDaConta;
 } Conta;
 
 typedef struct{
@@ -36,3 +35,5 @@ Conta buscar_por_cpf();
 void alterar_users(int id, int dado, char *novoDado);
 void deposito(double valor, int id);
 void deletarUsuario(int id);
+void fomratarCpfString(char *antigo, char *novo);
+void todosUsuários();
