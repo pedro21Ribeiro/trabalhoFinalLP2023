@@ -14,7 +14,7 @@ Antes de começar a instalar certifique-se que o sistema onde o programa irá fu
 O projeto em especifico foi feito no Ubuntu 22.04.03, recomendamos usar a mesma versão ou uma versão próxima para evitar complicações
 
 
-#﻿# Tutorial de Instalação do Sistema no linux
+## Tutorial de Instalação do Sistema no linux
 
 Primeiro, atualize todas as dependências do sistema usando o comando abaixo:
 
