@@ -6,9 +6,11 @@
 int main(void){
     Conta cliente;
     char user[51];
+    char novoDado[75];
     char temp;
 
-    int opcao, id;
+    double valor;
+    int opcao, id, editar;
     int i = 1;
     
     cliente = buscar_por_id(56);
@@ -24,7 +26,12 @@ while (i != 0)
     printf("3 - Cadastrar usuário\n");
     printf("4 - Realizar movimentação (por id)\n");
     printf("5 - Ver movimento\n");
+    printf("6 - Buscar por ID\n");
+    printf("7 - Alterar dados de usuário\n");
+    printf("8 - Realizar deposito\n");
+    printf("9 - Deletar usuários\n");
     scanf("%d", &opcao);
+
     switch (opcao)
     {
     case 0:
@@ -37,19 +44,29 @@ while (i != 0)
         printf("Digite o nome do cliente: ");
         scanf("%[^\n]", user);
         cliente = buscar_por_nome(user);
-
-        printf("\nID: %d\n", cliente.id);
-        printf("Nome: %s\n", cliente.nome);
-        printf("Tipo de Conta: %d\n", cliente.tipoDeConta);
-        printf("Saldo: %0.2lf\n", cliente.saldo);
+        
+        if (cliente.nome == 0){
+            printf("Não existe ninguém com esse nome no banco de bados\n");
+        }else
+        {
+            printf("\nID: %d\n", cliente.id);
+            printf("Nome: %s\n", cliente.nome);
+            printf("Tipo de Conta: %d\n", cliente.tipoDeConta);
+            printf("Saldo: %0.2lf\n", cliente.saldo);
+        }
         break;
     case 2:
         cliente = buscar_por_cpf();
 
-        printf("\nID: %d\n", cliente.id);
-        printf("Nome: %s\n", cliente.nome);
-        printf("Tipo de Conta: %d\n", cliente.tipoDeConta);
-        printf("Saldo: %0.2lf\n", cliente.saldo);
+        if (cliente.id == 0){
+            printf("Não existe ninguém com esse CPF no banco de bados\n");
+        }else
+        {
+            printf("\nID: %d\n", cliente.id);
+            printf("Nome: %s\n", cliente.nome);
+            printf("Tipo de Conta: %d\n", cliente.tipoDeConta);
+            printf("Saldo: %0.2lf\n", cliente.saldo);
+        }
         break;
     case 3:
         add_user_terminal();
@@ -62,15 +79,60 @@ while (i != 0)
         scanf("%d", &id);
         retornoMovimento(id);
         break;
+    case 6:
+        scanf("%c", &temp);
+        printf("Digite o ID do cliente: ");
+        scanf("%d", &id);
+        cliente = buscar_por_id(id);
+
+        if (cliente.id == 0){
+            printf("Não existe ninguém com esse ID no banco de bados\n");
+            break;
+        }   
+        printf("\nID: %d\n", cliente.id);
+        printf("Nome: %s\n", cliente.nome);
+        printf("Tipo de Conta: %d\n", cliente.tipoDeConta);
+        printf("Saldo: %0.2lf\n", cliente.saldo);
+    case 7:
+        printf("Qual dado será alterado?\n");
+        printf("1 - Nome\n");
+        printf("2 - CPF\n");
+        printf("3 - Tipo de conta\n");
+        printf("4 - Saldo\n");
+        scanf("%d", &editar);
+
+        printf("Digite o ID do usuário que será alterado:  ");
+        scanf("%d", &id);
+
+        scanf("%c", &temp);
+        printf("Digite um novo dado:  ");
+        scanf("%[^\n]", novoDado);
+
+        alterar_users(id, editar, novoDado);
+        printf("Dados alterado com sucesso\n");
+        break;    
+    case 8:
+        printf("Digite a ID do usuários que será feito o deposito:  ");
+        scanf("%d", &id);
+        printf("Digite o valor que será depositado:  ");
+        scanf("%lf", &valor);
+        
+        deposito(id, valor);
+        printf("Deposito realizado com sucesso\n");
+    break;
+    case 9:
+        printf("Digite o ID do usuário que será deletado:  ");
+        scanf("%d", &id);
+
+        deletarUsuario(id);
+    break;
     default:
         printf("Opcao Inválida\n");
         break;
     }
-    
-
 }
 
-printf("FIM DO WHILE!\n");
+printf("BYE!\n");
 
 return 0;
 

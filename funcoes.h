@@ -33,3 +33,6 @@ void formatarCpf(long long int numCpf, char *cpf);
 void add_movimento_terminal();
 void transferir_dinheiro(int contaEnvio, int contaRecebimento, double valor);
 Conta buscar_por_cpf();
+void alterar_users(int id, int dado, char *novoDado);
+void deposito(double valor, int id);
+void deletarUsuario(int id);

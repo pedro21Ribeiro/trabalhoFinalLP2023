@@ -11,6 +11,66 @@ char *user = "root"; //Usuário (recomendo criar outro sem ser o root)
 char *password = "2023"; //Senha do usuário
 char *database = "banco"; //O database a ser acessado
 
+void deletarUsuario(int id){
+    Conta check;
+    check = buscar_por_id(id);
+
+    if (check.id == 0){
+        printf("Usuário não existem, cancelando operação\n");
+        return;
+    }
+
+    char query [600];
+    sprintf(query, "DELETE FROM users WHERE id = '%d' LIMIT 1;", id);
+    usersSemRetorno(query);
+    printf("Usuários deletado com sucesso\n");
+}
+
+
+void alterar_users(int id, int dado, char *novoDado){ //id do usuário de será alterado, dado > qual dado será alterado, novoDado > dados alterados
+    char query [600];
+    char valor [75];
+    switch (dado)
+    {
+    case 1:
+        strcpy(valor,"nome");
+        break;
+    case 2:
+        strcpy(valor,"cpf");
+        break;
+    case 3:
+        strcpy(valor,"tipo"); //tipo de conta
+        break;
+    case 4:
+        strcpy(valor,"saldo");           
+        break;
+    default:
+        break;
+    }
+    sprintf(query, "UPDATE users SET %s = '%s' WHERE id = '%d' LIMIT 1;", valor, novoDado, id);
+    usersSemRetorno(query);
+}
+
+void deposito(double valor, int id){
+    Conta check; 
+    double saldoNovo;
+    char *value;
+    check = buscar_por_id(id);
+
+    if(check.id == 0){
+        printf("Usuários inexistente, cancelando a operação\n");
+        return;
+    }
+    if (valor <= 0){
+        printf("Valor não pode ser negativo ou 0, cancelando operação\n");
+        return;
+    }
+
+    saldoNovo = check.saldo + valor;
+    sprintf(value, "%f", saldoNovo);
+    alterar_users(id, 4, value);
+}
+
 
 void add_movimento_terminal(){
     int idEnvio;
@@ -123,7 +183,7 @@ void add_user_terminal(){
     scanf("%lld", &numCpf);
     printf("Digite o tipo da conta:   ");
     scanf("%d", &tipoDeConta);
-    printf("Digite o seu deposito inicial ou 0 caso seja uma criança:   ");
+    printf("Digite o seu deposito inicial ou 0 se preferiri não investir:   ");
     scanf("%lf", &saldo);
     scanf("%c", &temp);
 
