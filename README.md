@@ -14,7 +14,7 @@ Agora conecte-se ao mysql usando o comando abaixo
 
 Dentro do sql digite o comando abaixo ("Substitua o _Sua senha aqui_ por uma senha que escolher)
 
-==**ATNÇÃO NÃO ESQUEÇA DO PONTO E VIRGULA AO FINAL DE CADA LINHA**==
+**ATNÇÃO NÃO ESQUEÇA DO PONTO E VIRGULA AO FINAL DE CADA LINHA**
 
 > ALTER USER 'root'@'localhost' IDENTIFIED BY 'sua senha aqui';
 
