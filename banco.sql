@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `banco`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `banco` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-
-USE `banco`;
-
---
 -- Table structure for table `movimentos`
 --
 
@@ -37,7 +29,7 @@ CREATE TABLE `movimentos` (
   `valorMovimento` double DEFAULT NULL,
   `dataMovimento` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +38,7 @@ CREATE TABLE `movimentos` (
 
 LOCK TABLES `movimentos` WRITE;
 /*!40000 ALTER TABLE `movimentos` DISABLE KEYS */;
-INSERT INTO `movimentos` VALUES (1,1,2,50,'2023-11-19'),(2,3,1,50,'2023-11-19');
+INSERT INTO `movimentos` VALUES (1,1,2,50,'2023-11-19'),(2,3,1,50,'2023-11-19'),(3,8,7,100,'2023-12-01'),(4,7,8,400,'2023-12-01');
 /*!40000 ALTER TABLE `movimentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,8 +54,10 @@ CREATE TABLE `users` (
   `nome` varchar(51) NOT NULL,
   `tipo` int unsigned NOT NULL,
   `saldo` double DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `cpf` varchar(14) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cpf` (`cpf`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,7 +66,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Jonas',2,100),(2,'roberto',2,200),(3,'jaime',0,100);
+INSERT INTO `users` VALUES (7,'Roberto',1,-200,'111.222.333.45'),(8,'josias',2,400,'483.911.008-55');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -85,4 +79,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-19 11:44:06
+-- Dump completed on 2023-12-01 15:57:01
