@@ -1,4 +1,20 @@
-﻿# Tutorial de Instalação do Sistema no linux
+# Trabalho final de Linguagem de Programação(LP) 2° Semestre de 2023
+
+Este projeto é um aplicativo de manutenção de bancos de dados desenvolvido em C como parte de um projeto para a disciplina de Linguagem de Programação. O objetivo principal do aplicativo é proporcionar aos funcionários do banco uma ferramenta eficiente para gerenciar e manter registros de banco de dados. O aplicativo utiliza a linguagem de programação C para a lógica do sistema e integração com o MySQL para manipulação eficiente de dados. Os integrantes do grupo são:
+
+* Mariane Oliveira dos Santos mariane.santos25@fatec.sp.gov.br
+* Marjory Harumi Barbosa Hito marjory.hito@fatec.sp.gov.br
+* Matheus Santos Alves de Lima Matheus.lima80@fatec.sp.gov.br
+* Pedro Silva Ribeiro pedro.ribeiro32@fatec.sp.gov.br
+* Raphael Nascimento da Silva raphael.silva118@fatec.sp.gov.br
+
+## Requesitos
+
+Antes de começar a instalar certifique-se que o sistema onde o programa irá funcionar é uma distribuição de linux.
+O projeto em especifico foi feito no Ubuntu 22.04.03, recomendamos usar a mesma versão ou uma versão próxima para evitar complicações
+
+
+#﻿# Tutorial de Instalação do Sistema no linux
 
 Primeiro, atualize todas as dependências do sistema usando o comando abaixo:
 
@@ -76,3 +92,24 @@ Entao, para rodar o programa, digite:
 
 > sudo ./main
 
+
+## Funcionalidades Principais
+
+* **Adicionar usuário**: Adicionar um usuário ao banco de dados
+* **Buscar por usuário (nome, cpf ou id)**: Buscar por um usuário utilizando um dos três critérios
+* **Movimentar dinheiro entre contas**: Movimentar dinheiro entre a conta de dois usuários
+* **Ver histórico de movimentação de um usuário**: Ver o histórico de movimentação de um usuário especifico
+* **Alterar dados de um usuário**: Modificar os dados de um usuário
+* **Adicionar dinheiro a um usuário**: Adicionar dinheiro a conta de um usuário
+* **Deletar um usuário**: Remover o usuário do banco de dados (Movimentações feitas continuam no sistema)
+
+## Estrutura do programa
+
+* **main.c**: Arquivo de menu principal, poucas interações são realizadas nesse arquivo
+* **funcoes.c**: Arquivo principal do programa, onde estão todas as funcionalidades do programa
+* **funcoes.h**: Arquivo header do programa, utilizado para fazer a _linkagem_ entre o "funcoes.c" e o "main.c"
+* **banco.sql**: Arquivo dump do MySQL, usado para definir todos os campos nescessários que serão usados no banco de dados
+
+## Contribuição
+
+Contribuições são bem-vindas! Se você encontrar problemas ou desejar melhorar o aplicativo, sinta-se à vontade para abrir uma issue ou enviar um pull request.
