@@ -8,7 +8,7 @@ Este projeto é um aplicativo de manutenção de bancos de dados desenvolvido em
 * Pedro Silva Ribeiro pedro.ribeiro32@fatec.sp.gov.br
 * Raphael Nascimento da Silva raphael.silva118@fatec.sp.gov.br
 
-[video explicativo do projeto]([https://drive.google.com/file/d/19iLhjdGi3X9SQd6_WlNfiUIY8dCCLSwJ/view?usp=drive_link](https://drive.google.com/file/d/1c3B0lamTp5dn021FqdR0_Q1EkzOavRBz/view?usp=drive_link)
+[video explicativo do projeto]([https://drive.google.com/file/d/19iLhjdGi3X9SQd6_WlNfiUIY8dCCLSwJ/view?usp=drive_link](https://drive.google.com/file/d/1c3B0lamTp5dn021FqdR0_Q1EkzOavRBz/view?usp=drive_link))
 
 ## Requesitos
 
