@@ -94,6 +94,7 @@ while (i != 0)
         printf("Nome: %s\n", cliente.nome);
         printf("Tipo de Conta: %d\n", cliente.tipoDeConta);
         printf("Saldo: %0.2lf\n", cliente.saldo);
+        break;
     case 7:
         printf("Qual dado será alterado?\n");
         printf("1 - Nome\n");
@@ -117,8 +118,7 @@ while (i != 0)
         printf("Digite o valor que será depositado:  ");
         scanf("%lf", &valor);
         
-        deposito(id, valor);
-        printf("Deposito realizado com sucesso\n");
+        deposito(valor, id);
     break;
     case 9:
         printf("Digite o ID do usuário que será deletado:  ");
