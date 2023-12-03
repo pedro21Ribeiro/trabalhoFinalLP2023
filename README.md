@@ -98,6 +98,12 @@ Então, após compilar, para rodar o programa digite:
 * **Alterar dados**: Altera os dados de um usuário (exceto id)
 * **Deletar usuário**: Deleta um usuário do banco de dados(As movimentações que este usuário participou ainda continuam)
 
+## Estrutura do programa
+
+* **main.c**: Arquivo de menus, poucas funções se encontram aqui.
+* **funcoes.c**: Arquivo principal, aqui estão todas as funções utilizadas
+* **funcoes.h**: Arquivo header para o "funcoes.c" usado para _linkagem_
+
 ## Contribuição
 
 Contribuições são bem-vindas! Se você encontrar problemas ou desejar melhorar o aplicativo, sinta-se à vontade para abrir uma issue ou enviar um pull request.
