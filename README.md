@@ -8,6 +8,8 @@ Este projeto é um aplicativo de manutenção de bancos de dados desenvolvido em
 * Pedro Silva Ribeiro pedro.ribeiro32@fatec.sp.gov.br
 * Raphael Nascimento da Silva raphael.silva118@fatec.sp.gov.br
 
+[video explicativo do projeto](https://drive.google.com/file/d/19iLhjdGi3X9SQd6_WlNfiUIY8dCCLSwJ/view?usp=drive_link)
+
 ## Requesitos
 
 O aplicativo foi feito para ser usado em sistemas linux, recomendamos em específico o Ubuntu 22.04.03, pois foi onde o sistema foi desenvolvido
