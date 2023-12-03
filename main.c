@@ -12,10 +12,6 @@ int main(void){
     double valor;
     int opcao, id, editar;
     int i = 1;
-    
-    cliente = buscar_por_id(56);
-
-    printf("id:  %d\n", cliente.id);
 
 while (i != 0)
 {
